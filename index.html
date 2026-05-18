@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Credenciales | Gonzalo Joel Schroder</title>
+    <title>Portafolio & Credenciales | Gonzalo Joel Schroder</title>
     <style>
         :root {
             --primary: #00f2fe;
@@ -13,6 +13,7 @@
             --card-bg: rgba(30, 41, 59, 0.7);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
+            --success: #00ff88;
         }
 
         * {
@@ -34,21 +35,8 @@
         /* Header Section */
         header {
             text-align: center;
-            padding: 60px 20px;
+            padding: 60px 20px 40px;
             position: relative;
-            overflow: hidden;
-        }
-
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            border-radius: 2px;
         }
 
         h1 {
@@ -65,7 +53,7 @@
         .subtitle {
             font-size: 1.2rem;
             color: var(--text-muted);
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
 
         .badge-pro {
@@ -77,6 +65,115 @@
             border: 1px solid rgba(0, 242, 254, 0.3);
             display: inline-block;
             margin-bottom: 20px;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.8rem;
+            transition: color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            margin: 50px 0 30px;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        /* Container & Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        /* Proyectos Específicos (Nuevos Estilos) */
+        .project-card {
+            background: linear-gradient(145deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.9));
+            border-radius: 16px;
+            padding: 30px 25px;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.2);
+            border-color: var(--primary);
+        }
+
+        .project-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .project-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: #000;
+            font-weight: 700;
+            padding: 12px 20px;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            width: 100%;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+            transform: scale(1.02);
+            color: #000;
         }
 
         /* Filters */
@@ -107,20 +204,7 @@
             box-shadow: 0 0 15px rgba(79, 172, 254, 0.4);
         }
 
-        /* Grid Layout */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .certificates-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        /* Card Styles */
+        /* Certificate Cards */
         .card {
             background: var(--card-bg);
             border-radius: 16px;
@@ -133,12 +217,12 @@
             justify-content: space-between;
             position: relative;
             overflow: hidden;
-            opacity: 0;
             animation: fadeIn 0.5s forwards;
         }
 
         @keyframes fadeIn {
-            to { opacity: 1; }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .card:hover {
@@ -160,11 +244,7 @@
 
         .card.cat-tech::before { background: var(--primary); }
         .card.cat-edu::before { background: var(--accent); }
-        .card.cat-data::before { background: #00ff88; }
-
-        .card-header {
-            margin-bottom: 15px;
-        }
+        .card.cat-data::before { background: var(--success); }
 
         .card-type {
             font-size: 0.75rem;
@@ -216,10 +296,6 @@
             align-items: center;
             gap: 5px;
             transition: color 0.3s;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            max-width: 100%;
         }
 
         .btn-view:hover {
@@ -228,8 +304,8 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            h1 { font-size: 2rem; }
-            .certificates-grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.2rem; }
+            .grid-layout { grid-template-columns: 1fr; }
         }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -237,24 +313,76 @@
 <body>
 
     <header>
-        <div class="badge-pro">Perfil Verificado</div>
+        <div class="badge-pro"><i class="fas fa-check-circle"></i> Perfil Verificado</div>
         <h1>Gonzalo Joel Schroder</h1>
-        <p class="subtitle">Profesor de Matemática | Desarrollador EdTech | Especialista en Datos</p>
+        <p class="subtitle">Desarrollador Full-Stack | Analista de Datos | Profesor de Matemática</p>
         <div class="social-links">
-            <a href="https://www.linkedin.com/in/gonzalo-joel-schroder-9b8656367" target="_blank" style="color:white; font-size: 1.5rem;"><i class="fab fa-linkedin"></i></a>
-        </div>
+            <a href="https://www.linkedin.com/in/gonzalo-joel-schroder-9b8656367" target="_blank"><i class="fab fa-linkedin"></i></a>
+            </div>
     </header>
 
-    <div class="filter-container">
-        <button class="filter-btn active" onclick="filterSelection('all')">Todos</button>
-        <button class="filter-btn" onclick="filterSelection('cat-edu')">Docencia & Pedagogía</button>
-        <button class="filter-btn" onclick="filterSelection('cat-tech')">Tecnología & IA</button>
-        <button class="filter-btn" onclick="filterSelection('cat-data')">Datos & Negocios</button>
-    </div>
-
     <div class="container">
-        <div class="certificates-grid">
+        
+        <h2 class="section-title">Proyectos Destacados</h2>
+        <div class="grid-layout" style="margin-bottom: 60px;">
+            
+            <div class="project-card">
+                <div>
+                    <i class="fas fa-graduation-cap project-icon"></i>
+                    <h3 class="project-title">Plataforma Educativa</h3>
+                    <p class="project-desc">Entorno digital diseñado para optimizar el aprendizaje y la gestión de recursos pedagógicos.</p>
+                </div>
+                <a href="https://jsfeatmusic-cpu.github.io/quinto/" target="_blank" class="btn-primary">
+                    <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                </a>
+            </div>
 
+            <div class="project-card">
+                <div>
+                    <i class="fas fa-wallet project-icon"></i>
+                    <h3 class="project-title">App Educación Financiera</h3>
+                    <p class="project-desc">Aplicación enfocada en la enseñanza y gestión de conceptos financieros y económicos.</p>
+                </div>
+                <a href="https://gilded-parfait-422195.netlify.app/" target="_blank" class="btn-primary">
+                    <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <i class="fas fa-book project-icon"></i>
+                    <h3 class="project-title">Librería Digital Malena</h3>
+                    <p class="project-desc">Plataforma e-commerce y catálogo digital desarrollado para la gestión de productos literarios.</p>
+                </div>
+                <a href="https://jsfeatmusic-cpu.github.io/malena/" target="_blank" class="btn-primary">
+                    <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                </a>
+            </div>
+
+            <div class="project-card">
+                <div>
+                    <i class="fas fa-globe project-icon"></i>
+                    <h3 class="project-title">Sitio Web Seven</h3>
+                    <p class="project-desc">Desarrollo web corporativo enfocado en posicionamiento y experiencia de usuario (UX/UI).</p>
+                </div>
+                <a href="https://jsfeatmusic-cpu.github.io/seven/" target="_blank" class="btn-primary">
+                    <i class="fas fa-external-link-alt"></i> Ver Proyecto
+                </a>
+            </div>
+
+        </div>
+
+        <h2 class="section-title">Certificaciones y Credenciales</h2>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterSelection('all')">Todos</button>
+            <button class="filter-btn" onclick="filterSelection('cat-tech')">Tecnología & Backend</button>
+            <button class="filter-btn" onclick="filterSelection('cat-data')">Datos & Economía</button>
+            <button class="filter-btn" onclick="filterSelection('cat-edu')">Docencia</button>
+        </div>
+
+        <div class="grid-layout" id="certificatesGrid">
+            
             <div class="card cat-edu">
                 <div class="card-header">
                     <span class="card-type">Título Superior</span>
@@ -288,518 +416,8 @@
                     <a href="Certificado - Schroder, Gonzalo Joel - Senior Tracks Mixed PY 1.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
                 </div>
             </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Certificación Universitaria</span>
-                    <h3 class="card-title">Estadística para la Toma de Decisiones</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-chart-line"></i>
-                        <span>Universidad Siglo 21</span>
-                    </div>
-                    <div class="card-date">Emitido: Feb 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Gonzalo Joel Schroder - Certificado en Estadistica para la Toma de Decisiones.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
+            
             </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Economía</span>
-                    <h3 class="card-title">Programa de Especialización en Economía</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-coins"></i>
-                        <span>IFPYGP (Ciudad Bs. As.)</span>
-                    </div>
-                    <div class="card-date">Emitido: Jun 2024</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Economia (1).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-tech">
-                <div class="card-header">
-                    <span class="card-type">Data Science</span>
-                    <h3 class="card-title">PYTHON: Pensar con Datos</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fab fa-python"></i>
-                        <span>IFPYGP (Ciudad Bs. As.)</span>
-                    </div>
-                    <div class="card-date">Emitido: Jul 2023</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado curso participante (3).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Productividad</span>
-                    <h3 class="card-title">Google Sheets | Nivel 2</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-table"></i>
-                        <span>Instituto Superior de la Carrera</span>
-                    </div>
-                    <div class="card-date">Emitido: Ago 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificados Google Sheets _ Nivel 2.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Marketing Digital</span>
-                    <h3 class="card-title">Analista SEO (Motores de Búsqueda)</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fab fa-google"></i>
-                        <span>Fundación Carlos Slim</span>
-                    </div>
-                    <div class="card-date">Emitido: Ene 2024</div>
-                </div>
-                <div class="card-footer">
-                    <a href="certificado ceo.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-tech">
-                <div class="card-header">
-                    <span class="card-type">Seguridad Informática</span>
-                    <h3 class="card-title">Protege tu Negocio: Ciberseguridad</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Google Actívate</span>
-                    </div>
-                    <div class="card-date">Emitido: Jul 2022</div>
-                </div>
-                <div class="card-footer">
-                    <a href="certificado 5.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-tech">
-                <div class="card-header">
-                    <span class="card-type">IT Essentials</span>
-                    <h3 class="card-title">Cómputo Básico</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-desktop"></i>
-                        <span>Fundación Carlos Slim</span>
-                    </div>
-                    <div class="card-date">Emitido: Jul 2022</div>
-                </div>
-                <div class="card-footer">
-                    <a href="certificado 4.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Business Intelligence</span>
-                    <h3 class="card-title">Seminario Power BI</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-chart-bar"></i>
-                        <span>Gobierno de la Ciudad de Bs. As.</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2023</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado _Power BI_.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-tech">
-                <div class="card-header">
-                    <span class="card-type">Curso Técnico</span>
-                    <h3 class="card-title">Inteligencia Artificial</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-robot"></i>
-                        <span>Programo Mi Futuro</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - SCHRODER GONZALO (1) (1).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Documento</a>
-                </div>
-            </div>
-
-            <div class="card cat-tech">
-                <div class="card-header">
-                    <span class="card-type">Web3</span>
-                    <h3 class="card-title">Blockchain Desde Cero</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-link"></i>
-                        <span>Programo Mi Futuro</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - SCHRODER GONZALO (2) (1).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Documento</a>
-                </div>
-            </div>
-
-            <div class="card cat-tech">
-                <div class="card-header">
-                    <span class="card-type">Investigación Digital</span>
-                    <h3 class="card-title">Curso: Finder</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-search"></i>
-                        <span>Fundación Carlos Slim</span>
-                    </div>
-                    <div class="card-date">Emitido: May 2023</div>
-                </div>
-                <div class="card-footer">
-                    <a href="17f232df-1e38-4b09-a0a4-c2013851dec9_certificado (1).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-tech">
-                <div class="card-header">
-                    <span class="card-type">Programación</span>
-                    <h3 class="card-title">#SéProgramar</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-laptop-code"></i>
-                        <span>CESSI / INTI</span>
-                    </div>
-                    <div class="card-date">Emitido: Jun 2022</div>
-                </div>
-                <div class="card-footer">
-                    <a href="argentina_programa_2022 (1).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-             <div class="card cat-tech">
-                <div class="card-header">
-                    <span class="card-type">Multimedia</span>
-                    <h3 class="card-title">Edición de Videos</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-video"></i>
-                        <span>Programo Mi Futuro</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - Schroder gonzalo-3.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Documento</a>
-                </div>
-            </div>
-
-            <div class="card cat-tech">
-                <div class="card-header">
-                    <span class="card-type">Diseño</span>
-                    <h3 class="card-title">Diseño Gráfico</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-pen-nib"></i>
-                        <span>Programo Mi Futuro</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - SCHRODER GONZALO (3) (1).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Documento</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Management</span>
-                    <h3 class="card-title">Gestión de Proyectos: Desarrollo Documental</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-tasks"></i>
-                        <span>Instituto Superior de la Carrera</span>
-                    </div>
-                    <div class="card-date">Emitido: Sep 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado ISC _ Gonzalo Joel Schroder _ Gestión de proyectos_ Desarrollo de documentos.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Emprendimiento</span>
-                    <h3 class="card-title">Emprende con Éxito</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-rocket"></i>
-                        <span>IFPYGP (Ciudad Bs. As.)</span>
-                    </div>
-                    <div class="card-date">Emitido: Mar 2024</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Emprende con éxitos. (1).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Desarrollo Profesional</span>
-                    <h3 class="card-title">Estrategia formal de autoempleo</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-user-tie"></i>
-                        <span>Fundación Carlos Slim</span>
-                    </div>
-                    <div class="card-date">Emitido: 2023</div>
-                </div>
-                <div class="card-footer">
-                    <a href="certificado 6.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Emprendimiento</span>
-                    <h3 class="card-title">Evaluación de Ideas de Negocios</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-lightbulb"></i>
-                        <span>Fundación Carlos Slim</span>
-                    </div>
-                    <div class="card-date">Emitido: Jun 2024</div>
-                </div>
-                <div class="card-footer">
-                    <a href="afa2217b-f78b-4da9-9fbe-d82d27674f4b_certificado.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Gestión Empresarial</span>
-                    <h3 class="card-title">Manejo de Riesgos</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-shield-alt"></i>
-                        <span>Fundación Carlos Slim</span>
-                    </div>
-                    <div class="card-date">Emitido: Jul 2023</div>
-                </div>
-                <div class="card-footer">
-                    <a href="698e03b7-4144-44ee-af30-39e87d580cbf_certificado (2).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Negocios Digitales</span>
-                    <h3 class="card-title">Digitaliza tu Negocio</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fab fa-google"></i>
-                        <span>Google Actívate</span>
-                    </div>
-                    <div class="card-date">Emitido: Oct 2021</div>
-                </div>
-                <div class="card-footer">
-                    <a href="certificado (1).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Consultoría</span>
-                    <h3 class="card-title">Asesoría para PYMES</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-briefcase"></i>
-                        <span>Programo Mi Futuro</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - Schroder gonzalo (5).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Documento</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Economía</span>
-                    <h3 class="card-title">Cultura Económica (Intro)</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-coins"></i>
-                        <span>Fundación Carlos Slim</span>
-                    </div>
-                    <div class="card-date">Emitido: Feb 2022</div>
-                </div>
-                <div class="card-footer">
-                    <a href="certificado 2.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Economía</span>
-                    <h3 class="card-title">Cultura Económica (Inflación)</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-chart-pie"></i>
-                        <span>Fundación Carlos Slim</span>
-                    </div>
-                    <div class="card-date">Emitido: Feb 2022</div>
-                </div>
-                <div class="card-footer">
-                    <a href="certificado 3.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Marketing</span>
-                    <h3 class="card-title">De 0 a Experto en Marketing Digital</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-bullhorn"></i>
-                        <span>Programo Mi Futuro</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - SCHRODER GONZALO (4) (1).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Documento</a>
-                </div>
-            </div>
-
-             <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Marketing Digital</span>
-                    <h3 class="card-title">Publicidad Avanzada</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-ad"></i>
-                        <span>Programo Mi Futuro</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - SCHRODER GONZALO (6).pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Documento</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Social Media</span>
-                    <h3 class="card-title">Marketing de Contenidos y UGC</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-hashtag"></i>
-                        <span>Programo Mi Futuro</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - Schroder gonzalo-2.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Documento</a>
-                </div>
-            </div>
-
-             <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Ventas</span>
-                    <h3 class="card-title">Vendedor Todoterreno</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-handshake"></i>
-                        <span>Programo Mi Futuro</span>
-                    </div>
-                    <div class="card-date">Emitido: Nov 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - Schroder gonzalo-1.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Documento</a>
-                </div>
-            </div>
-
-            <div class="card cat-data">
-                <div class="card-header">
-                    <span class="card-type">Formación General</span>
-                    <h3 class="card-title">Derecho Constitucional Argentino</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-balance-scale"></i>
-                        <span>Instituto Superior de la Carrera</span>
-                    </div>
-                    <div class="card-date">Emitido: Ago 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Derecho Constitucional Argentino.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-edu">
-                <div class="card-header">
-                    <span class="card-type">Tecnología Educativa</span>
-                    <h3 class="card-title">Herramientas básicas de GeoGebra</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-shapes"></i>
-                        <span>Plataforma Guacurarí</span>
-                    </div>
-                    <div class="card-date">Emitido: Sep 2025</div>
-                </div>
-                <div class="card-footer">
-                    <a href="C59_DNI43358321_Schroder_Gonzalo_Joel.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-            <div class="card cat-edu">
-                <div class="card-header">
-                    <span class="card-type">Gestión Educativa</span>
-                    <h3 class="card-title">Principios de diseño para transformar la escuela</h3>
-                </div>
-                <div class="card-body">
-                    <div class="card-institution">
-                        <i class="fas fa-school"></i>
-                        <span>Gobierno de la Ciudad de Bs. As.</span>
-                    </div>
-                    <div class="card-date">Emitido: Feb 2024</div>
-                </div>
-                <div class="card-footer">
-                    <a href="Certificado - Principios de diseño para transformar la escuela.pdf" class="btn-view" target="_blank"><i class="fas fa-file-pdf"></i> Ver Certificado</a>
-                </div>
-            </div>
-
-        </div>
     </div>
 
     <script>
@@ -807,20 +425,20 @@
             const cards = document.getElementsByClassName("card");
             const btns = document.getElementsByClassName("filter-btn");
 
+            // Update active button
             for (let i = 0; i < btns.length; i++) {
                 btns[i].classList.remove("active");
-                if (btns[i].textContent.includes(getLabel(category)) || 
-                   (category === 'all' && btns[i].textContent === 'Todos')) {
+                if (btns[i].getAttribute('onclick').includes(category)) {
                     btns[i].classList.add("active");
                 }
             }
-            event.target.classList.add("active");
 
+            // Filter cards
             for (let i = 0; i < cards.length; i++) {
                 if (category === "all") {
                     cards[i].style.display = "flex";
                     cards[i].style.animation = "none";
-                    cards[i].offsetHeight;
+                    cards[i].offsetHeight; // Trigger reflow
                     cards[i].style.animation = "fadeIn 0.5s forwards";
                 } else {
                     if (cards[i].classList.contains(category)) {
@@ -833,13 +451,6 @@
                     }
                 }
             }
-        }
-
-        function getLabel(cat) {
-            if(cat === 'cat-edu') return 'Docencia';
-            if(cat === 'cat-tech') return 'Tecnología';
-            if(cat === 'cat-data') return 'Datos';
-            return 'Todos';
         }
     </script>
 </body>
